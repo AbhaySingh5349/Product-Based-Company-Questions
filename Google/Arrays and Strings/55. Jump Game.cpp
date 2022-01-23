@@ -31,15 +31,15 @@ public:
         int n=a.size();
         if(n==1) return true;
         
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq; 
+        priority_queue<int,vector<int>,greater<int>> pq; 
         
-        pq.push({a[0],0});
+        pq.push(a[0]);
         for(int i=1;i<n;i++){
-            while(pq.size()>0 && pq.top().first<i) pq.pop();
+            while(pq.size()>0 && pq.top()<i) pq.pop();
             
             if(pq.size()==0) return false;
-            if(pq.top().first>=n-1) return true;
-            pq.push({i+a[i],i});
+            if(pq.top()>=n-1) return true;
+            pq.push(i+a[i]);
         }
         return false;
     }
