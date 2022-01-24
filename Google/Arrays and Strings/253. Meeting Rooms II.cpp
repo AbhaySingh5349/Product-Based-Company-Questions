@@ -1,4 +1,6 @@
-Question Link: https://leetcode.com/problems/trapping-rain-water/
+Question Link: https://leetcode.com/problems/meeting-rooms-ii/
+
+// Approach 1:
 
 class Solution {
 public:
@@ -16,5 +18,28 @@ public:
             if(pq.size()>c) c=pq.size();
         }
         return c;
+    }
+};
+
+// Approach 2:
+
+class Solution {
+public:
+    int minMeetingRooms(vector<vector<int>> &a) {
+        int maxe=0;
+        for(int i=0;i<a.size();i++) maxe=max(maxe,a[i][1]);
+        
+        vector<int> scanline(maxe+1,0);
+        for(int i=0.;i<a.size();i++){
+            int s=a[i][0], e=a[i][1];
+            scanline[s]++, scanline[e]--;
+        }
+        
+        int ans=1;
+        for(int i=1;i<maxe+1;i++){
+            scanline[i] += scanline[i-1];
+            ans=max(ans,scanline[i]);
+        }
+        return ans;
     }
 };
