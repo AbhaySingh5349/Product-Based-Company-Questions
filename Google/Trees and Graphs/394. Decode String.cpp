@@ -1,4 +1,6 @@
-Question Link: https://leetcode.com/problems/trapping-rain-water/
+Question Link: https://leetcode.com/problems/decode-string/
+
+// Approach 1:
 
 class Solution {
 public:
@@ -50,5 +52,41 @@ public:
         reverse(ans.begin(),ans.end());
         
         return ans;
+    }
+};
+
+// Approach 2:
+
+class Solution {
+public:
+    
+    string solve(string s, int &i){
+        string ans="";
+        
+        int n=s.length();
+        
+        while(i<n && s[i]!=']'){
+            
+            if(isdigit(s[i])){
+                int k=0;
+                while(i<n && isdigit(s[i])) k = k*10 + (s[i++]-'0');
+
+                i++; // skipping '['
+
+                string sub=solve(s,i);
+                
+                i++; // skipping ']'
+                
+                while(k--) ans += sub;
+            }else{
+                ans += s[i++];
+            }
+        } 
+        return ans;
+    }
+    
+    string decodeString(string s) {
+        int i=0;
+        return solve(s,i);
     }
 };
