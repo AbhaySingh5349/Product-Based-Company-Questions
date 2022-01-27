@@ -10,7 +10,7 @@ public:
         TrieNode *child[26];
         int wordEnd;
         int index; // original index of word ending at this node 
-        int count;
+        int count; // count of words having with current char being part of it
     };
     
     TrieNode *root;
@@ -31,8 +31,8 @@ public:
             int idx=s[i]-'a';
             if(cur->child[idx]==NULL) cur->child[idx]=createNode(idx);
             
-            cur->count++;
             cur=cur->child[idx];
+            cur->count++;
         }
         cur->wordEnd++;
         cur->index=k;
@@ -45,13 +45,14 @@ public:
             int idx=ch-'a';
             if(cur->child[idx]==NULL) cur->child[idx]=createNode(idx);
             
-            cur->count--;
             cur=cur->child[idx];
+            cur->count--;
         }
         cur->wordEnd--;
     }
     
     int dxy[4][2]={{-1,0},{0,1},{1,0},{0,-1}};
+    
     void solve(vector<vector<char>>& grid, int i, int j, TrieNode *cur, set<int> &st, vector<string> &words){
         int n=grid.size(), m=grid[0].size();
         if(i<0 || j<0 || i==n || j==m || grid[i][j]=='*') return ;
