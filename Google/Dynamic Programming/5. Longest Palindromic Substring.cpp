@@ -1,4 +1,6 @@
-Question Link: https://leetcode.com/problems/trapping-rain-water/
+Question Link: https://leetcode.com/problems/longest-palindromic-substring/
+
+// Approach 1:
 
 class Solution {
 public:
@@ -25,6 +27,38 @@ public:
             getPalondrome(s,i,i,maxlen,start); // odd length
             
             getPalondrome(s,i,i+1,maxlen,start); // even length
+        }
+        
+        string ans="";
+        for(int i=start;i<start+maxlen;i++) ans+=s[i];
+        
+        return ans;
+    }
+};
+
+// Approach 2:
+
+class Solution {
+public:
+    
+    string longestPalindrome(string s) {
+        int n=s.length();
+        
+        vector<vector<bool>> dp(n,vector<bool>(n,false));
+        
+        int maxlen=0, start=-1;
+        for(int len=1;len<=n;len++){
+            for(int i=0;i<n-len+1;i++){
+                int j=i+len-1;
+                if(s[i]==s[j]) dp[i][j]=(j-i<2 || dp[i+1][j-1]);
+                
+                if(dp[i][j]){
+                    if(len>maxlen){
+                        maxlen=len;
+                        start=i;
+                    }
+                }
+            }
         }
         
         string ans="";
