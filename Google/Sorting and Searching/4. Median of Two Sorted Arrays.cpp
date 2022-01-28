@@ -1,5 +1,39 @@
 Question Link: https://leetcode.com/problems/median-of-two-sorted-arrays/
 
+// Approach 1:
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& a, vector<int>& b) {
+        int n=a.size(), m=b.size();
+        int len=n+m;
+        vector<int> v(len);
+        
+        int i=0, j=0, k=0;
+        while(i<n && j<m){
+            if(a[i]<=b[j]){
+                v[k++]=a[i++];
+            }else{
+                v[k++]=b[j++];
+            }
+        }
+        while(i<n) v[k++]=a[i++];
+        while(j<m) v[k++]=b[j++];
+        
+        for(int i=0;i<len;i++) cout<<v[i]<<" ";
+        
+        double ans;
+        if(len%2==0){
+            ans=(v[len/2]+v[len/2-1])/(double)2;
+        }else{
+            ans=v[len/2];
+        }
+        return ans;
+    }
+};
+
+// Approach 2:
+
 class Solution {
 public:
     double findMedianSortedArrays(vector<int> &a, vector<int> &b) {
