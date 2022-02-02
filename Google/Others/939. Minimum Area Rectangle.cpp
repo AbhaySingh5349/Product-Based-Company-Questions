@@ -1,4 +1,4 @@
-Question Link: https://leetcode.com/problems/trapping-rain-water/
+Question Link: https://leetcode.com/problems/minimum-area-rectangle/
 
 // Approach 1:
 
