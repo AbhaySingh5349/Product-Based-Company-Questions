@@ -8,7 +8,7 @@ public:
         if(n==0) return 0;
         int i=0;
         for(int j=1;j<n;j++){
-            if(a[j]!=a[i]){
+            if(a[j]!=a[j-1]){
                 i++;
                 a[i]=a[j];
             }
