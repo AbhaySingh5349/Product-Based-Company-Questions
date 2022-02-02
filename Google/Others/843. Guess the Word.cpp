@@ -1,4 +1,4 @@
-Question Link: https://leetcode.com/problems/trapping-rain-water/
+Question Link: https://leetcode.com/problems/guess-the-word/
 
 /**
  * // This is the Master's API interface.
@@ -12,8 +12,7 @@ class Solution {
 public:
     
     int matchCount(string a, string b){
-        int c=0;
-        int n=a.length();
+        int n=a.length(), c=0;
         for(int i=0;i<n;i++) if(a[i]==b[i]) c++;
         return c;
     }
